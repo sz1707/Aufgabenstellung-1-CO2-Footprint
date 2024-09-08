@@ -1,0 +1,71 @@
+.header-color { /* Einstellungen für den Header-Bereich */
+    background-color: #c1c1c1; 
+}
+
+.content-color { /* Einstellungen für den Content-Bereich */
+    background-color: #dadada;
+    padding: 20px;
+}
+
+.footer-color { /* Einstellungen für den Footer-Bereich */
+    background-color: #c1c1c1;
+}
+.container { /* Bestimmung des oberen Außenabstandes zwischen den Elementen */
+    margin-top: 20px;
+}
+
+.custom-btn { /* Einstellungen für den Dropdown-Menü Button */
+    color: #000; 
+    background-color: #fff; 
+    border: 2px solid #889982; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-btn:hover { /* Einstellung für eine visuelle Rückmeldung */
+    background-color: #889982; 
+    color: #fff; 
+}
+
+.custom-btn:active { /* Einstellung bei Interaktion */
+    background-color: #889982; 
+    color: #fff;
+    border-color: #889982; 
+}
+
+.fixed-position {
+    position: fixed;
+    top: 90px; 
+    z-index: 1000;
+}
+
+/* Für LTR-Sprachen */
+[dir="ltr"] .fixed-position {
+    right: 5px; /* Abstand vom rechten Rand */
+    left: auto;
+}
+
+/* Für RTL-Sprachen */
+[dir="rtl"] .fixed-position {
+    left: 5px; /* Abstand vom linken Rand */
+    right: auto;
+}
+
+
+@media (max-width: 576px) {
+    .navbar-brand img {
+        width: 30px;
+        height: auto;
+    }
+
+    .navbar-brand span {
+        font-size: 14px;
+    }
+
+    .footer-bg .container {
+        text-align: center;
+    }
+
+    .footer-bg .col-md-6 {
+        margin-bottom: 10px;
+    }
+}

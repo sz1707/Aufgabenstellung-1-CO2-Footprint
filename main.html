@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive Einstellung -->
+    <title>CO2 Transparenz e.V. - Non-Profit Organisation</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- benutzerdefinierte Stile -->
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header mit globaler Navigationsleiste -->
+    <header class="header-color">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="main.html">
+                    <img src="Nonprofit-Logo.PNG" alt="Nonprofit Logo" height="50" class="d-inline-block align-middle">
+                    <span class="align-middle">CO<sub>2</sub>Transparenz e.V.</span>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="main.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="impressum.html">Impressum</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="datenschutz.html">Datenschutzhinweise</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Suchleiste, gibt bei Fehler die Ausgabe: Standardvalidierung des jeweiligen Browsers + <title> -->
+                <div class="d-flex ms-auto">
+                    <form class="d-flex" role="search" onsubmit="return validateSearch()">
+                        <input class="form-control me-2" type="search" placeholder="Suchleiste" aria-label="Search" id="search-input"
+                            pattern="[A-Za-z0-9 ]*" title="Hoppala da ist ein Fehler passiert. Bitte nur ganze Wörter oder Zahlen verwenden."> 
+                        <button class="btn custom-btn" type="submit">GO!</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dropdown Menü als mitlaufender Button & lokalen Verlinkungen -->
+    <div id="dropdown-menu" class="fixed-position">
+        <button class="btn custom-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            Menü
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#erster Abschnitt">Allgemeines</a></li>
+            <li><a class="dropdown-item" href="#zweiter Abschnitt">Emissionstabelle</a></li>
+            <li><a class="dropdown-item" href="#dritter Abschnitt">Abschließendes</a></li>
+            <li><a class="dropdown-item" href="impressum.html">Impressum</a></li>
+            <li><a class="dropdown-item" href="datenschutz.html">Datenschutzhinweise</a></li>
+        </ul>
+    </div>
+
+
+    <!-- Hauptinhalt -->
+    <div class="content-color">
+        <div class="container">
+
+            <!-- Zwei Textabschnitte -->
+            <div id="erster Abschnitt" class="row mb-4">
+                <div class="col-md-6 mb-3">
+                    <h2>Über CO<sub>2</sub>-Emissionen</h2>
+                    <p>CO<sub>2</sub>-Emissionen haben ein nicht unwesentlichen Einfluss auf den Klimawandel. Diese Seite des CO<sub>2</sub>Transparenz e.V. 
+                        soll ausreichend Informationen bieten, um sich einen Überblick über die CO<sub>2</sub>-Emissionen verschiedener Länder und Unternehmen, 
+                        verschaffen zu können. Ziel ist es Transparenz zu schaffen und das Bewusstsein für die CO<sub>2</sub>-Emissionen zu erhöhen.</p>
+                </div>
+                <div class="col-md-6">
+                    <h2>Über unsere Organisation</h2>
+                    <p>Wir sind eine Non-Profit-Organisation, die sich für den Klimaschutz einsetzt. Unser Ziel ist es,
+                        durch Bildung und Öffentlichkeitsarbeit zur Reduktion von CO<sub>2</sub>-Emissionen beizutragen und die Aufmerksamkeit zu erhöhen.
+                        Unser Team besteht aus fleißigen Mitarbeitenden, welche die darglegten Informationen stetig aktualisieren und auf ihre Richtigkeit überprüfen.</p>
+                </div>
+            </div>
+
+            <!-- Tabelle -->
+            <div id="zweiter Abschnitt" class="mb-4">
+                <h2>CO<sub>2</sub>-Emissionsdaten</h2>
+                <p>In der nachfolgenden Tabelle befindet sich eine Auflistung der weltweit Top-20 Unternehmen mit den höchsten CO<sub>2</sub>-Emissionsdaten.
+                    Die aufgelisteten Top 20 können anhand der jeweiligen Länder und Unternehmen durch die ausfüllbare Filterfunktion gefiltert werden.
+                    Bei einem Klick auf die jeweilige Überschrift können die Positionen entsprechend aufsteigend oder absteigend sortiert werden.</p>
+                <input type="text" id="searchInput" class="form-control mb-3" placeholder="Land oder Unternehmen filtern"
+                    onkeyup="filterTable()">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable(0)">Land</th>
+                                <th onclick="sortTable(1)">Unternehmen</th>
+                                <th onclick="sortTable(2)">CO<sub>2</sub>Emissionen (in Tonnen)</th>
+                            </tr>
+                        </thead>
+                        <!-- Inhalt der Tabelle -->
+                        <tbody id="co2Table"> 
+                            <tr>
+                                <td>Deutschland</td>
+                                <td>Auto-Mobile AG</td>
+                                <td>483</td>
+                            </tr>
+                            <tr>
+                                <td>USA</td>
+                                <td>Payment GmbH</td>
+                                <td>472</td>
+                            </tr>
+                            <tr>
+                                <td>China</td>
+                                <td>Terrakotta-Armee GmbH</td>
+                                <td>436</td>
+                            </tr>
+                            <tr>
+                                <td>Indien</td>
+                                <td>Bollywood AG</td>
+                                <td>394</td>
+                            </tr>
+                            <tr>
+                                <td>Brasilien</td>
+                                <td>Samba GmbH & Co.KG</td>
+                                <td>390</td>
+                            </tr>
+                            <tr>
+                                <td>Japan</td>
+                                <td>Geisha Cooperation</td>
+                                <td>366</td>
+                            </tr>
+                            <tr>
+                                <td>Deutschland</td>
+                                <td>Weihnachtsmarkt SE</td>
+                                <td>354</td>
+                            </tr>
+                            <tr>
+                                <td>Kanada</td>
+                                <td>Rocky Mountain GmbH</td>
+                                <td>321</td>
+                            </tr>
+                            <tr>
+                                <td>Australien</td>
+                                <td>Platypus AG</td>
+                                <td>306</td>
+                            </tr>
+                            <tr>
+                                <td>Südafrika</td>
+                                <td>Kricket AG</td>
+                                <td>299</td>
+                            </tr>
+                            <tr>
+                                <td>Deutschland</td>
+                                <td>Buchdruck GmbH</td>
+                                <td>287</td>
+                            </tr>
+                            <tr>
+                                <td>Südkorea</td>
+                                <td>K-Pop Cooperation</td>
+                                <td>286</td>
+                            </tr>
+                            <tr>
+                                <td>China</td>
+                                <td>Bunte Mauer AG</td>
+                                <td>261</td>
+                            </tr>
+                            <tr>
+                                <td>Indien</td>
+                                <td>Himalaya Spices GmbH</td>
+                                <td>259</td>
+                            </tr>
+                            <tr>
+                                <td>Spanien</td>
+                                <td>Flamenco Cooperation</td>
+                                <td>254</td>
+                            </tr>
+                            <tr>
+                                <td>Italien</td>
+                                <td>Amalfi AG</td>
+                                <td>210</td>
+                            </tr>
+                            <tr>
+                                <td>Mexiko</td>
+                                <td>Azteken Cooperation</td>
+                                <td>204</td>
+                            </tr>
+                            <tr>
+                                <td>Niederlande</td>
+                                <td>Fahrrad AG</td>
+                                <td>199</td>
+                            </tr>
+                            <tr>
+                                <td>Luxemburg</td>
+                                <td>Ardennen Food GmbH</td>
+                                <td>189</td>
+                            </tr>
+                            <tr>
+                                <td>Schweden</td>
+                                <td>Nobelpreis Cooperation</td>
+                                <td>187</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Abschließender Abschnitt -->
+            <div id="dritter Abschnitt" class="mb-4">
+                <h2>Abschließendes</h2>
+                <p>Wir hoffen, dass diese Informationen Ihnen helfen, die Auswirkungen von CO<sub>2</sub>-Emissionen besser zu
+                    verstehen. Vielleicht sind Sie nun auch motiviert Maßnahmen für den Klimaschutz zu ergreifen und sich genauer mit der 
+                    Umwelt auseinanderzusetzen. Vielen Dank, dass Sie sich die Zeit genommen haben!</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-color py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <a href="impressum.html" class="text-dark me-3">Impressum</a>
+                    <a href="datenschutz.html" class="text-dark">Datenschutzhinweise</a>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="https://instagram.com" target="_blank" class="text-dark me-3">Instagram</a>
+                    <a href="https://facebook.com" target="_blank" class="text-dark">Facebook</a>
+                </div>
+            </div>
+            <div class="text-center">
+                <p>&copy; 2024 CO<sub>2</sub>Transparenz e.V. Alle Rechte vorbehalten.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Skripte -->
+    <!-- JavaScript zur Sortierung und Filterung der Tabelle -->
+    <script>
+        // Funktion zum Sortieren der Tabelle
+        function sortTable(columnIndex) {
+            const table = document.getElementById("co2Table");
+            let switching = true;
+            let shouldSwitch, i, x, y;
+            let direction = "asc"; // Start mit aufsteigender Sortierung 
+            let switchCount = 0;
+
+            while (switching) { 
+                switching = false;
+                const rows = table.rows;
+                for (i = 0; i < rows.length - 1; i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[columnIndex];
+                    y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+
+                    if (direction === "asc") { // Überprüft, ob aufsteigende Sortierrichtung
+                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (direction === "desc") { // Überprüft, ob absteigende Sortierrichtung
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                // Ausführen der ggf. Neusortierung
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchCount++;
+                } else {
+                    if (switchCount === 0 && direction === "asc") {
+                        direction = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+        // Funktion zum Filtern der Tabelle
+        function filterTable() {
+            const input = document.getElementById("searchInput");
+            const filter = input.value.toLowerCase(); // Umwandlung in Kleinbuchstaben  
+            const table = document.getElementById("co2Table");
+            const tr = table.getElementsByTagName("tr");
+
+            for (let i = 0; i < tr.length; i++) { // Filtert in den ersten beiden Spalten der Tabelle
+                const tdCountry = tr[i].getElementsByTagName("td")[0];
+                const tdCompany = tr[i].getElementsByTagName("td")[1];
+
+                if (tdCountry || tdCompany) { 
+                    const countryValue = tdCountry.textContent || tdCountry.innerText;
+                    const companyValue = tdCompany.textContent || tdCompany.innerText;
+                    
+                    //Überprüft, ob der Suchtext in einer Spalte gefunden wird, falls ja, wird die entsprechende Zeile sichtbar
+                    if (countryValue.toLowerCase().indexOf(filter) > -1 || companyValue.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else { // ansonsten wir die Zeile ausgeblendet
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+   
+    </script>
+
+    <script>
+        // Absicherung der Suchleiste 
+        function validateSearch() {
+            const searchInput = document.getElementById('search-input').value;
+
+            const pattern = /^[A-Za-z0-9 ]*$/;
+            if (!pattern.test(searchInput)) {
+                alert('Hoppala da ist ein Fehler passiert. Bitte nur ganze Wörter oder Zahlen verwenden.');
+                return false; // für den Fall, dass die Eingabe ungültig ist, wir das Suchen verhindert
+            }
+            return true;
+        }
+    </script>
+
+    <script>
+        // Erkennung und Einstellung der Sprache
+        function setDirectionBasedOnLanguage() {
+            const rtlLanguages = ["ar", "arc", "dv", "fa", "ha", "he", "khw", "ks", "ku", "ps", "ur", "yi"];
+            const userLang = navigator.language.split('-')[0];
+
+            if (rtlLanguages.includes(userLang)) {
+                document.documentElement.setAttribute('dir', 'rtl'); // die Leserichtung wird von rechts nach links gesetzt
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr'); // die Leserichtung wird von links nach rechts gesetzt
+            }
+        }
+        window.onload = setDirectionBasedOnLanguage; // legt die Sprache beim Laden der Seite fest
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
